@@ -3,7 +3,7 @@
 # See: http://github.com/seb-m/pyinotify/wiki/Tutorial
 #
 import pyinotify
-import os, glob, time
+import os, glob, time, shutil
 
 TRASH_DIR = '/media/Store/.Trash-1000'
 TRASH_INFO_DIR = '/media/Store/.Trash-1000/info'
@@ -58,9 +58,8 @@ def compactTrash():
         print "Deleting: ", infoFilePath
         
         if os.path.isdir(filePath):
-            if isDirEmpty(filePath):
-                os.rmdir(filePath)
-                os.remove(infoFilePath)
+            shutil.rmtree(filePath)
+            os.remove(infoFilePath)
         else:
             os.remove(filePath)
             os.remove(infoFilePath)
