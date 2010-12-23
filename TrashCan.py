@@ -8,7 +8,7 @@ import os, glob, time
 TRASH_DIR = '/media/Store/.Trash-1000'
 TRASH_INFO_DIR = '/media/Store/.Trash-1000/info'
 TRASH_FILE_DIR = '/media/Store/.Trash-1000/files'
-MAX_SIZE = 3000;
+MAX_SIZE = 2000;
 
 wm = pyinotify.WatchManager()  # Watch Manager
 mask = pyinotify.IN_DELETE | pyinotify.IN_MOVED_TO  # watched events
