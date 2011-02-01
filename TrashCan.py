@@ -10,6 +10,10 @@ TRASH_INFO_DIR = '/media/Store/.Trash-1000/info'
 TRASH_FILE_DIR = '/media/Store/.Trash-1000/files'
 MAX_SIZE = 2000;
 
+GCONF_APP_PATH = '/apps/dustbin'
+TRASH_DIR_KEY  = GCONF_APP_PATH + '/trash_dir'
+MAX_SIZE_KEY   = GCONF_APP_PATH + '/size'
+
 wm = pyinotify.WatchManager()  # Watch Manager
 mask = pyinotify.IN_DELETE | pyinotify.IN_MOVED_TO  # watched events
 
