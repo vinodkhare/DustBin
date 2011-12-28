@@ -6,7 +6,7 @@ from DaakPrefsWindow import *
 from pygmail import *
 from keyring import *
 
-class DaakApplication:
+class DustBinApplication:
 	def __init__(self):
 		self.indicator = DaakIndicator("daak", "/home/vinod/Code/Daak/daak-new.png", appindicator.CATEGORY_APPLICATION_STATUS)
 		self.indicator.initWidgets()

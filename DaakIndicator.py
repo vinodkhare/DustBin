@@ -1,7 +1,7 @@
 import appindicator
 import gtk
 
-class DaakIndicator(appindicator.Indicator):
+class DustBinIndicator(appindicator.Indicator):
 	def initWidgets(self):
 		self.set_status(appindicator.STATUS_ACTIVE)
 		menu = gtk.Menu()
