@@ -11,7 +11,7 @@ TRASH_INFO_DIR = '/media/Store/.Trash-1000/info'
 TRASH_FILE_DIR = '/media/Store/.Trash-1000/files'
 MAX_SIZE = 20000;
 
-mask = pyinotify.IN_DELETE | pyinotify.IN_MOVED_TO | pyinotify.IN_MOVED_FROM # watched events
+mask = pyinotify.IN_MOVED_TO | pyinotify.IN_MOVED_FROM # watched events
 
 # event handler class
 class EventHandler(pyinotify.ProcessEvent):
@@ -21,21 +21,15 @@ class EventHandler(pyinotify.ProcessEvent):
 		self.Indicator = Indicator
 	
 	def process_IN_MOVED_FROM(self, event):
-		# self.Indicator.AddRestored
-		print "Restored: ", event.pathname
+		self.Indicator.SetSize(self.Bin.Size())
+		self.Indicator.AddRestored(event.pathname)
 	
 	def process_IN_MOVED_TO(self, event):
-		print "Creating: ", event.pathname
-
-		trashCanSize = self.Bin.Size()
-		print "Trash can size: %0.1f M" % trashCanSize
-
-		if trashCanSize > MAX_SIZE:
-			print "Size of trash can exceeded maximum allowed limit. Compacting."
-			compactTrash()
-
-	def process_IN_DELETE(self, event):
-		print "Removing:", event.pathname
+		self.Indicator.SetSize(self.Bin.Size())
+		self.Indicator.AddTrashed(event.pathname)
+		
+		if self.Bin.Size() > MAX_SIZE:
+			self.Bin.Compact()
 
 class DustBinApplication:
 	def __init__(self):
