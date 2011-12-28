@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import gtk
 import gobject
 import os, glob, time, shutil
