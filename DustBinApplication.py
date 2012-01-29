@@ -36,7 +36,7 @@ class DustBinApplication:
 		# create the dust bin
 		self.Bin = DustBin()
 		
-		self.indicator = DustBinIndicator("dustbin", "/media/Store/Code/DustBin/trash-dark.png", appindicator.CATEGORY_APPLICATION_STATUS)
+		self.indicator = DustBinIndicator("dustbin", "/home/vinod/Code/DustBin/trash-dark.png", appindicator.CATEGORY_APPLICATION_STATUS)
 		self.indicator.initWidgets()
 		self.indicator.SetSize(self.Bin.Size())
 		

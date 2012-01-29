@@ -2,7 +2,7 @@
 
 import gtk
 import gobject
-import os, glob, time, shutil
+import os, glob, time, shutil, shlex, subprocess
 from DustBinIndicator import *
 from Utils import *
 
@@ -36,15 +36,20 @@ class DustBin:
 				os.remove(filePath)
 				os.remove(infoFilePath)
 				
-			print 'Trashcan size: ', Size()
+			print 'Trashcan size: ', self.Size()
         
-	def Size(self):
+	def Size(self):		
+		"""
 		folder_size = 0
 		
 		for (path, dirs, files) in os.walk(TRASH_DIR):
 			for file in files:
 				filename = os.path.join(path, file)
 				folder_size += os.path.getsize(filename)
+		"""
+		output = subprocess.check_output(['du', '-s', '/media/Store/.Trash-1000'])
+		outputSplit = shlex.split(output)
+		folderSize = float(outputSplit[0])
 		
-		folder_size /= (1024*1024.0)
-		return folder_size
+		folderSize /= 1024
+		return folderSize
